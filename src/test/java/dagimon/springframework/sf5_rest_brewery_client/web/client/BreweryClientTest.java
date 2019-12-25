@@ -1,6 +1,7 @@
 package dagimon.springframework.sf5_rest_brewery_client.web.client;
 
 import dagimon.springframework.sf5_rest_brewery_client.web.model.BeerDto;
+import dagimon.springframework.sf5_rest_brewery_client.web.model.CustomerDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,5 +44,34 @@ class BreweryClientTest {
 
     private BeerDto createBeerSampleDto() {
         return BeerDto.builder().id(UUID.randomUUID()).beerName("SantaCroce").build();
+    }
+
+    @Test
+    void getCustomerById() {
+        CustomerDto customerDto = breweryClient.getCustomerById(UUID.randomUUID());
+        assertNotNull(customerDto);
+    }
+
+    @Test
+    void addNewCustomer() {
+        CustomerDto customerDto = createCustomerSampleDto();
+        URI customerURI = breweryClient.addNewCustomer(customerDto);
+        assertNotNull(customerURI);
+    }
+
+    @Test
+    void updateCustomer() {
+        CustomerDto customerDto = createCustomerSampleDto();
+        breweryClient.updateCustomer(customerDto.getId(), customerDto);
+    }
+
+    @Test
+    void deleteCustomer() {
+        breweryClient.deleteCustomer(UUID.randomUUID());
+    }
+
+    private CustomerDto createCustomerSampleDto() {
+        return CustomerDto.builder().id(UUID.randomUUID()).name("John Smith").build();
+
     }
 }
