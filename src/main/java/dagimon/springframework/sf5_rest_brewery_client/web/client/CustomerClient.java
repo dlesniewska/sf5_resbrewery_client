@@ -13,7 +13,7 @@ import java.util.UUID;
 @ConfigurationProperties(prefix = "sf5.brewery", ignoreUnknownFields = false)
 public class CustomerClient {
 
-    private final String BEER_PATH_V1 = "/api/v1/customer/";
+    private final String CUSTOMER_PATH_V1 = "/api/v1/customer/";
     private String apihost;
     private final RestTemplate restTemplate;
 
@@ -32,7 +32,7 @@ public class CustomerClient {
     }
 
     public URI addNewCustomer(CustomerDto customerDto) {
-        return restTemplate.postForLocation(apihost + BEER_PATH_V1, customerDto);
+        return restTemplate.postForLocation(apihost + CUSTOMER_PATH_V1, customerDto);
     }
 
     public void updateCustomer(UUID customerUUID, CustomerDto customerDto) {
@@ -44,6 +44,6 @@ public class CustomerClient {
     }
 
     private String prepareURI(UUID beerUUID) {
-        return apihost + BEER_PATH_V1 + beerUUID.toString();
+        return apihost + CUSTOMER_PATH_V1 + beerUUID.toString();
     }
 }
