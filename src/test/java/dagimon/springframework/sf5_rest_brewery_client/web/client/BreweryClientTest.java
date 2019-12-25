@@ -24,7 +24,7 @@ class BreweryClientTest {
 
     @Test
     void saveNewBeer() {
-        BeerDto beerDto = BeerDto.builder().beerName("SantaCroce").build();
+        BeerDto beerDto = createBeerSampleDto();
         URI newBeerURI = breweryClient.saveNewBeer(beerDto);
         assertNotNull(newBeerURI);
         System.out.println(newBeerURI.toString());
@@ -32,12 +32,16 @@ class BreweryClientTest {
 
     @Test
     void updateBeer() {
-        BeerDto beerDto = BeerDto.builder().id(UUID.randomUUID()).beerName("SantaCroce").build();
+        BeerDto beerDto = createBeerSampleDto();
         breweryClient.updateBeer(beerDto.getId(), beerDto);
     }
 
     @Test
     void deleteBeer() {
         breweryClient.deleteBeer(UUID.randomUUID());
+    }
+
+    private BeerDto createBeerSampleDto() {
+        return BeerDto.builder().id(UUID.randomUUID()).beerName("SantaCroce").build();
     }
 }
