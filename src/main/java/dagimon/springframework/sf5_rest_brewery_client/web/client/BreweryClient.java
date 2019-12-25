@@ -20,15 +20,20 @@ public class BreweryClient {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public BeerDto getBeerById(UUID uuid) {
-        return restTemplate.getForObject(apihost + BEER_PATH_V1 + uuid.toString(), BeerDto.class);
+    public void setApihost(String apihost) {
+        this.apihost = apihost;
+    }
+
+    public BeerDto getBeerById(UUID beerUUID) {
+        return restTemplate.getForObject(apihost + BEER_PATH_V1 + beerUUID.toString(), BeerDto.class);
     }
 
     public URI saveNewBeer(BeerDto beerDto) {
         return restTemplate.postForLocation(apihost + BEER_PATH_V1, beerDto);
     }
 
-    public void setApihost(String apihost) {
-        this.apihost = apihost;
+    public void updateBeer(UUID beerUUID, BeerDto beerDto) {
+        restTemplate.put(apihost + BEER_PATH_V1 + "/" + beerUUID.toString(), beerDto);
     }
+
 }
