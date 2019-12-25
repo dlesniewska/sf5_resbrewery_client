@@ -12,6 +12,7 @@ import org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFacto
 import org.springframework.web.client.RestTemplate;
 
 //@Component
+//@ConfigurationProperties(prefix = "sf5.brewery", ignoreUnknownFields = false)
 public class NIORestTemplateCustomizer implements RestTemplateCustomizer {
 
     public ClientHttpRequestFactory clientHttpRequestFactory() throws IOReactorException {
