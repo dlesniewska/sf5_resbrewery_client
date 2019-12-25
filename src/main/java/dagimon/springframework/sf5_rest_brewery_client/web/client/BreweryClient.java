@@ -11,7 +11,7 @@ import java.util.UUID;
 @Component
 @ConfigurationProperties(prefix = "sf5.brewery", ignoreUnknownFields = false)
 public class BreweryClient {
-    private final String BEER_PATH_V1 = "/api/v1/beer";
+    private final String BEER_PATH_V1 = "/api/v1/beer/";
     private String apihost;
     private final RestTemplate restTemplate;
 
