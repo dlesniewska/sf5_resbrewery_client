@@ -1,0 +1,1 @@
+package dagimon.springframework.sf5_rest_brewery_client.web.client;
